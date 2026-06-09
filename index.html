@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARA — UX/UI дизайнер | Портфолио</title>
+    <!-- Подключаем шрифт Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <!-- Иконки Material Icons (для стрелок) -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* ---------- ГЛОБАЛЬНЫЙ ШРИФТ ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        body {
+            background: #E9E4E0;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        /* ---------- ШАПКА ---------- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 40px 0 40px;
+        }
+
+        .logo {
+            font-size: 42px;
+            font-weight: 300;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 400;
+        }
+
+        .phone {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        /* ---------- ГЛАВНЫЙ ЭКРАН (HERO) ---------- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            margin-top: 120px;
+            padding: 0 40px;
+        }
+
+        .hero-left h1 {
+            font-size: 72px;
+            line-height: 1;
+            font-weight: 400;
+        }
+
+        .hero-left span {
+            color: #ff5a1f;
+        }
+
+        .hero-center img {
+            width: 420px;
+            border-radius: 24px;
+        }
+
+        .hero-right {
+            text-align: right;
+            font-size: 24px;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        /* ---------- ФУТЕР (над слайдером) ---------- */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 14px;
+            padding: 140px 40px 60px 40px;
+            font-weight: 400;
+        }
+
+        /* ---------- СЛАЙДЕР С МИНИМАЛИСТИЧНЫМИ СТРЕЛКАМИ ---------- */
+        .experience {
+            background: #F5F0EC;
+            width: 100%;
+            padding: 120px 48px;
+            position: relative;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 72px;
+            margin-bottom: 72px;
+            font-weight: 400;
+        }
+
+        /* Обёртка слайдера с относительным позиционированием для стрелок */
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider {
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform .6s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #ECE8E5;
+        }
+
+        .card__image {
+            height: 470px;
+        }
+
+        .card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card__info {
+            position: relative;
+            background: #ECE8E5;
+            padding: 34px;
+            min-height: 470px;
+        }
+
+        .card__header h2 {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: #1D1D1D;
+        }
+
+        .card__logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .card__logo img {
+            width: 220px;
+        }
+
+        .card__footer {
+            position: absolute;
+            left: 34px;
+            bottom: 30px;
+            display: flex;
+            gap: 10px;
+            font-weight: 400;
+        }
+
+        /* Минималистичные стрелки Material Design */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .slider-arrow:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .slider-arrow .material-icons {
+            font-size: 32px;
+            color: #1D1D1D;
+        }
+
+        .arrow-left {
+            left: 16px;
+        }
+
+        .arrow-right {
+            right: 16px;
+        }
+
+        /* Точки пагинации */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 64px;
+        }
+
+        .dot {
+            width: 64px;
+            height: 6px;
+            border-radius: 999px;
+            background: #D5D0CC;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #1D1D1D;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ПЕРВЫЙ БЛОК -->
+<header class="header">
+    <div class="logo">MARA</div>
+    <nav>
+        <a href="#">Обо мне</a>
+        <a href="#">Отзывы</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#">Услуги</a>
+        <a href="#">Контакты</a>
+    </nav>
+    <div class="phone">+7 953 881-93-74</div>
+</header>
+
+<main class="hero">
+    <div class="hero-left">
+        <h1>
+            <span>Я МАРИНА</span><br>
+            UX/UI ДИЗАЙНЕР
+        </h1>
+    </div>
+    <div class="hero-center">
+        <img src="photo.jpg" alt="Марина">
+    </div>
+    <div class="hero-right">
+        В МОЕЙ РАБОТЕ<br>
+        БИЗНЕС + ПОЛЬЗОВАТЕЛИ<br>
+        ОПРЕДЕЛЯЮТ ДИЗАЙН-РЕШЕНИЕ
+    </div>
+</main>
+
+<footer class="footer">
+    <div>2026</div>
+    <div>Более 5 лет в сфере дизайна интерфейсов, сегодня я работаю дизайнером в IBS</div>
+    <div>Только вперед и только все вместе <a href="#">подробнее</a></div>
+</footer>
+
+<!-- ВТОРОЙ БЛОК СО СЛАЙДЕРОМ И СТРЕЛКАМИ -->
+<section id="portfolio" class="experience">
+    <h1 class="title">ОПЫТ РАБОТЫ</h1>
+
+    <div class="slider-wrapper">
+        <!-- Стрелка влево -->
+        <div class="slider-arrow arrow-left" id="prevSlide">
+            <span class="material-icons">chevron_left</span>
+        </div>
+
+        <div class="slider">
+            <div class="slides">
+                <!-- Слайд 1 -->
+                <div class="slide">
+                    <div class="card">
+                        <div class="card__image">
+                            <img src="image 1 слайдер(2).jpg" alt="Проект">
+                        </div>
+                        <div class="card__info">
+                            <div class="card__header">
+                                <h2><a href="https://putin-team.ru/" target="_blank" class="project-link">РЕДИЗАЙН ИНТЕРНЕТ-МАГАЗИНА</a></h2>
+                            </div>
+                            <div class="card__logo"><img src="Logo_PTR(1).png" alt=""></div>
+                            <div class="card__footer"><span>2024</span><span>•</span><span>UX/UI</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Слайд 2 -->
+                <div class="slide">
+                    <div class="card">
+                        <div class="card__image"><img src="image 2 слайдер.jpg" alt=""></div>
+                        <div class="card__info">
+                            <div class="card__header"><h2><a href="https://www.figma.com/proto/PxXJ3qizymFZRFnJ5Ps2nT/Project-Sentinet?node-id=650-2&t=x2fgqcnNeWZZbwPk-1&scaling=scale-down-width&content-scaling=fixed&page-id=301%3A3480" target="_blank" class="project-link">ПЛАТФОРМА ПО УПРАВЛЕНИЮ API</a></h2></div>
+                            <div class="card__logo"><img src="logo_nevatech.png" alt=""></div>
+                            <div class="card__footer"><span>2023</span><span>•</span><span>UX/UI</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Слайд 3 -->
+                <div class="slide">
+                    <div class="card">
+                        <div class="card__image"><img src="image 3 слайдер.jpg" alt=""></div>
+                        <div class="card__info">
+                            <div class="card__header"><h2><a href="https://putin-team.ru/" target="_blank" class="project-link">ПЛАТФОРМА ПОДБОРА ГСМ</a></h2></div>
+                            <div class="card__logo"><img src="logo_lukoil.png" alt=""></div>
+                            <div class="card__footer"><span>2022</span><span>•</span><span>UX/UI</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Слайд 4 -->
+                <div class="slide">
+                    <div class="card">
+                        <div class="card__image"><img src="image 4 слайдер.jpg" alt=""></div>
+                        <div class="card__info">
+                            <div class="card__header"><h2><a href="https://www.akcept.ru/?utm_referrer=https%3A%2F%2Fwww.google.com%2F" target="_blank" class="project-link">САЙТ ДЛЯ БАНКА</a></h2></div>
+                            <div class="card__logo"><img src="logo_aksept.png" alt=""></div>
+                            <div class="card__footer"><span>2024</span><span>•</span><span>UX/UI</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Слайд 5 -->
+                <div class="slide">
+                    <div class="card">
+                        <div class="card__image"><img src="image 1 слайдер(2).jpg" alt=""></div>
+                        <div class="card__info">
+                            <div class="card__header"><h2><a href="https://putin-team.ru/" target="_blank" class="project-link">РЕДИЗАЙН ИНТЕРНЕТ-МАГАЗИНА</a></h2></div>
+                            <div class="card__logo"><img src="Logo_PTR(1).png" alt=""></div>
+                            <div class="card__footer"><span>2024</span><span>•</span><span>UX/UI</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Слайд 6 -->
+                <div class="slide">
+                    <div class="card">
+                        <div class="card__image"><img src="image 1 слайдер(2).jpg" alt=""></div>
+                        <div class="card__info">
+                            <div class="card__header"><h2><a href="https://putin-team.ru/" target="_blank" class="project-link">РЕДИЗАЙН ИНТЕРНЕТ-МАГАЗИНА</a></h2></div>
+                            <div class="card__logo"><img src="Logo_PTR(1).png" alt=""></div>
+                            <div class="card__footer"><span>2024</span><span>•</span><span>UX/UI</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Стрелка вправо -->
+        <div class="slider-arrow arrow-right" id="nextSlide">
+            <span class="material-icons">chevron_right</span>
+        </div>
+    </div>
+
+    <div class="pagination">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+
+<script>
+    const slides = document.querySelector('.slides');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    let current = 0;
+    const totalSlides = dots.length;
+
+    function showSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        current = index;
+        slides.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach(d => d.classList.remove('active'));
+        dots[current].classList.add('active');
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    prevBtn.addEventListener('click', () => showSlide(current - 1));
+    nextBtn.addEventListener('click', () => showSlide(current + 1));
+
+    showSlide(0);
+</script>
+
+</body>
+</html>
