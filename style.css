@@ -71,12 +71,81 @@ nav a{
     justify-content:space-between;
     align-items:flex-end;
     font-size:14px;
+    padding-bottom:60px;
 }
+
+.resume-link {
+    color: #222;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.resume-link:hover {
+    color: #ff5a1f;
+}
+
+/* ---------- БЛОК "ОБО МНЕ" ---------- */
+.about {
+    background: #F5F0EC;
+    width: 100%;
+    padding: 160px 48px 80px;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 64px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-text p {
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #232323;
+}
+
+.about-text p + p {
+    margin-top: 24px;
+}
+
+.about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-highlight {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #ECE8E5;
+    border-radius: 20px;
+    padding: 24px 28px;
+}
+
+.about-highlight__num {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ff5a1f;
+    white-space: nowrap;
+}
+
+.about-highlight__label {
+    font-size: 15px;
+    font-weight: 400;
+    color: #232323;
+    line-height: 1.4;
+}
+
 /* Секция "Опыт работы" и слайдер (из style 2.css) */
 .experience {
     background: #F5F0EC;
     width: 100%;
-    padding: 120px 48px;    /* отступы внутри секции, фон заливает всё */
+    padding: 80px 48px;    /* отступы внутри секции, фон заливает всё */
 }
 
 .title {
@@ -152,6 +221,20 @@ nav a{
     gap: 10px;
 }
 
+/* Слайд "IBS" — текущее место работы */
+.card__logo--ibs {
+    width: 231px;
+    height: 108px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-weight: 800;
+    font-size: 88px;
+    letter-spacing: 1px;
+    color: #1B3557;
+}
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -169,4 +252,293 @@ nav a{
 
 .dot.active {
     background: #1D1D1D;
+}
+
+/* ---------- БЛОК "ОТЗЫВЫ" ---------- */
+.reviews {
+    background: #F5F0EC;
+    width: 100%;
+    padding: 80px 48px;
+}
+
+.reviews-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+}
+
+.review-folder {
+    position: relative;
+    width: 280px;
+    min-height: 180px;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    background: #E9E4E0;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* "Ушко" папки */
+.review-folder::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 24px;
+    width: 88px;
+    height: 24px;
+    background: #E9E4E0;
+    border-radius: 10px 10px 0 0;
+}
+
+.review-folder:hover,
+.review-folder:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+.review-folder:focus-visible {
+    outline: 2px solid #ff5a1f;
+    outline-offset: 4px;
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.review-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+}
+
+.review-dot {
+    color: #A9A29B;
+}
+
+.review-date {
+    font-size: 14px;
+    font-weight: 400;
+    color: #232323;
+}
+
+/* ---------- ПОП-АП С ОТЗЫВОМ ---------- */
+.review-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.review-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.review-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(29, 29, 29, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.review-modal__content {
+    position: relative;
+    width: 90%;
+    max-width: 560px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: #F5F0EC;
+    border-radius: 24px;
+    padding: 48px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.25s ease;
+}
+
+.review-modal.active .review-modal__content {
+    transform: translateY(0) scale(1);
+}
+
+.review-modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.review-modal__close:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.review-modal__header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-right: 40px;
+}
+
+.review-modal__name {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.review-modal__date {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6b6b6b;
+}
+
+.review-modal__text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    font-weight: 400;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* ---------- ФИНАЛЬНЫЙ БЛОК (ФУТЕР) ---------- */
+html {
+    scroll-behavior: smooth;
+}
+
+.final-footer {
+    position: relative;
+    background: #EBE6E2;
+    width: 100%;
+    padding: 56px 48px;
+}
+
+.final-footer__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.final-footer__logo {
+    font-size: 42px;
+    font-weight: 300;
+}
+
+.final-footer__status {
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: right;
+    font-weight: 400;
+}
+
+.final-footer__cta {
+    text-align: center;
+    margin-top: 120px;
+}
+
+.final-footer__heading {
+    font-size: 64px;
+    line-height: 1.1;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.final-footer__heading span {
+    color: #ff5a1f;
+}
+
+.final-footer__subtext {
+    margin-top: 24px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.final-footer__phone {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #232323;
+    text-decoration: none;
+}
+
+.final-footer__phone:hover {
+    color: #ff5a1f;
+}
+
+.final-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 120px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.final-footer__socials {
+    display: flex;
+    gap: 16px;
+}
+
+.final-footer__social {
+    padding: 10px 24px;
+    border: 1px solid #232323;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #232323;
+    font-size: 14px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.final-footer__social:hover {
+    background: #232323;
+    color: #EBE6E2;
+}
+
+.back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #232323;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.back-to-top__arrow {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.back-to-top:hover {
+    color: #ff5a1f;
+}
+
+.back-to-top:hover .back-to-top__arrow {
+    transform: translateY(-3px);
 }
