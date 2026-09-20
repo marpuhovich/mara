@@ -93,11 +93,78 @@
             font-weight: 400;
         }
 
+        .resume-link {
+            color: #222;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s ease;
+        }
+
+        .resume-link:hover {
+            color: #ff5a1f;
+        }
+
+        /* ---------- БЛОК "ОБО МНЕ" ---------- */
+        .about {
+            background: #F5F0EC;
+            width: 100%;
+            padding: 160px 48px 80px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 64px;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: 400;
+            color: #232323;
+        }
+
+        .about-text p + p {
+            margin-top: 24px;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .about-highlight {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #ECE8E5;
+            border-radius: 20px;
+            padding: 24px 28px;
+        }
+
+        .about-highlight__num {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff5a1f;
+            white-space: nowrap;
+        }
+
+        .about-highlight__label {
+            font-size: 15px;
+            font-weight: 400;
+            color: #232323;
+            line-height: 1.4;
+        }
+
         /* ---------- СЛАЙДЕР С МИНИМАЛИСТИЧНЫМИ СТРЕЛКАМИ ---------- */
         .experience {
             background: #F5F0EC;
             width: 100%;
-            padding: 120px 48px;
+            padding: 80px 48px;
             position: relative;
         }
 
@@ -182,6 +249,20 @@
             font-weight: 400;
         }
 
+        /* Слайд "IBS" — текущее место работы */
+        .card__logo--ibs {
+            width: 231px;
+            height: 108px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            font-weight: 800;
+            font-size: 88px;
+            letter-spacing: 1px;
+            color: #1B3557;
+        }
+
         /* Минималистичные стрелки Material Design */
         .slider-arrow {
             position: absolute;
@@ -238,19 +319,307 @@
         .dot.active {
             background: #1D1D1D;
         }
+
+        /* ---------- БЛОК "ОТЗЫВЫ" ---------- */
+        .reviews {
+            background: #F5F0EC;
+            width: 100%;
+            padding: 80px 48px;
+        }
+
+        .reviews-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .review-folder {
+            position: relative;
+            width: 280px;
+            min-height: 180px;
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+            background: #E9E4E0;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        /* "Ушко" папки */
+        .review-folder::before {
+            content: "";
+            position: absolute;
+            top: -16px;
+            left: 24px;
+            width: 88px;
+            height: 24px;
+            background: #E9E4E0;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .review-folder:hover,
+        .review-folder:focus-visible {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-folder:focus-visible {
+            outline: 2px solid #ff5a1f;
+            outline-offset: 4px;
+        }
+
+        .review-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #232323;
+        }
+
+        .review-dot {
+            color: #A9A29B;
+        }
+
+        .review-date {
+            font-size: 14px;
+            font-weight: 400;
+            color: #232323;
+        }
+
+        /* ---------- ПОП-АП С ОТЗЫВОМ ---------- */
+        .review-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .review-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .review-modal__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(29, 29, 29, 0.55);
+            backdrop-filter: blur(2px);
+        }
+
+        .review-modal__content {
+            position: relative;
+            width: 90%;
+            max-width: 560px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: #F5F0EC;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            transform: translateY(20px) scale(0.98);
+            transition: transform 0.25s ease;
+        }
+
+        .review-modal.active .review-modal__content {
+            transform: translateY(0) scale(1);
+        }
+
+        .review-modal__close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .review-modal__close:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .review-modal__header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-right: 40px;
+        }
+
+        .review-modal__name {
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .review-modal__date {
+            font-size: 16px;
+            font-weight: 400;
+            color: #6b6b6b;
+        }
+
+        .review-modal__text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            font-weight: 400;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* ---------- ФИНАЛЬНЫЙ БЛОК (ФУТЕР) ---------- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .final-footer {
+            position: relative;
+            background: #EBE6E2;
+            width: 100%;
+            padding: 56px 48px;
+        }
+
+        .final-footer__top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .final-footer__logo {
+            font-size: 42px;
+            font-weight: 300;
+        }
+
+        .final-footer__status {
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: right;
+            font-weight: 400;
+        }
+
+        .final-footer__cta {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .final-footer__heading {
+            font-size: 64px;
+            line-height: 1.1;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .final-footer__heading span {
+            color: #ff5a1f;
+        }
+
+        .final-footer__subtext {
+            margin-top: 24px;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .final-footer__phone {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 20px;
+            font-weight: 400;
+            color: #232323;
+            text-decoration: none;
+        }
+
+        .final-footer__phone:hover {
+            color: #ff5a1f;
+        }
+
+        .final-footer__bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 120px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .final-footer__socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .final-footer__social {
+            padding: 10px 24px;
+            border: 1px solid #232323;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #232323;
+            font-size: 14px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .final-footer__social:hover {
+            background: #232323;
+            color: #EBE6E2;
+        }
+
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #232323;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-to-top__arrow {
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .back-to-top:hover {
+            color: #ff5a1f;
+        }
+
+        .back-to-top:hover .back-to-top__arrow {
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
 
 <!-- ПЕРВЫЙ БЛОК -->
-<header class="header">
+<header class="header" id="top">
     <div class="logo">MARA</div>
     <nav>
-        <a href="#">Обо мне</a>
-        <a href="#">Отзывы</a>
-        <a href="#portfolio">Портфолио</a>
-        <a href="#">Услуги</a>
-        <a href="#">Контакты</a>
+        <a href="#about">Обо мне</a>
+        <a href="#portfolio">Опыт работы</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
     </nav>
     <div class="phone">+7 953 881-93-74</div>
 </header>
@@ -274,9 +643,35 @@
 
 <footer class="footer">
     <div>2026</div>
-    <div>Более 5 лет в сфере дизайна интерфейсов, сегодня я работаю дизайнером в IBS</div>
-    <div>Только вперед и только все вместе <a href="#">подробнее</a></div>
+    <a href="resume.pdf" target="_blank" class="resume-link">Резюме</a>
 </footer>
+
+<!-- БЛОК "ОБО МНЕ" -->
+<section id="about" class="about">
+    <h1 class="title">ОБО МНЕ</h1>
+
+    <div class="about-content">
+        <div class="about-text">
+            <p>Я UX/UI-дизайнер с более чем 5-летним опытом проектирования цифровых продуктов для B2B и корпоративного сегмента. Специализируюсь на сложных масштабируемых системах с множеством ролей и сценариев использования, где решения затрагивают одновременно бизнес-процессы, интересы пользователей и техническую реализацию.</p>
+            <p>В работе отталкиваюсь от задачи, а не от эстетики: ищу узкие места в процессах и предлагаю решения, которые остаются удобными по мере роста системы. Использую ИИ для рутинных этапов и обработки информации.</p>
+        </div>
+
+        <div class="about-highlights">
+            <div class="about-highlight">
+                <span class="about-highlight__num">5+</span>
+                <span class="about-highlight__label">лет опыта в UX/UI</span>
+            </div>
+            <div class="about-highlight">
+                <span class="about-highlight__num">B2B</span>
+                <span class="about-highlight__label">и корпоративные системы</span>
+            </div>
+            <div class="about-highlight">
+                <span class="about-highlight__num">IBS</span>
+                <span class="about-highlight__label">текущее место работы</span>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ВТОРОЙ БЛОК СО СЛАЙДЕРОМ И СТРЕЛКАМИ -->
 <section id="portfolio" class="experience">
@@ -290,6 +685,21 @@
 
         <div class="slider">
             <div class="slides">
+                <!-- Слайд IBS (текущее место работы) -->
+                <div class="slide">
+                    <div class="card">
+                        <div class="card__image">
+                            <img src="image 0 слайдер(IBS).png" alt="Платформы по работе с ассортиментом">
+                        </div>
+                        <div class="card__info">
+                            <div class="card__header">
+                                <h2>ПЛАТФОРМЫ ПО РАБОТЕ С АССОРТИМЕНТОМ</h2>
+                            </div>
+                            <div class="card__logo card__logo--ibs">IBS</div>
+                            <div class="card__footer"><span>2024 - 2026</span></div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Слайд 1 -->
                 <div class="slide">
                     <div class="card">
@@ -301,7 +711,7 @@
                                 <h2><a href="https://putin-team.ru/" target="_blank" class="project-link">РЕДИЗАЙН ИНТЕРНЕТ-МАГАЗИНА</a></h2>
                             </div>
                             <div class="card__logo"><img src="Logo_PTR(1).png" alt=""></div>
-                            <div class="card__footer"><span>2024</span><span>•</span><span>UX/UI</span></div>
+                            <div class="card__footer"><span>2024</span></div>
                         </div>
                     </div>
                 </div>
@@ -312,7 +722,7 @@
                         <div class="card__info">
                             <div class="card__header"><h2><a href="https://www.figma.com/proto/PxXJ3qizymFZRFnJ5Ps2nT/Project-Sentinet?node-id=650-2&t=x2fgqcnNeWZZbwPk-1&scaling=scale-down-width&content-scaling=fixed&page-id=301%3A3480" target="_blank" class="project-link">ПЛАТФОРМА ПО УПРАВЛЕНИЮ API</a></h2></div>
                             <div class="card__logo"><img src="logo_nevatech.png" alt=""></div>
-                            <div class="card__footer"><span>2023</span><span>•</span><span>UX/UI</span></div>
+                            <div class="card__footer"><span>2023</span></div>
                         </div>
                     </div>
                 </div>
@@ -323,7 +733,7 @@
                         <div class="card__info">
                             <div class="card__header"><h2><a href="https://putin-team.ru/" target="_blank" class="project-link">ПЛАТФОРМА ПОДБОРА ГСМ</a></h2></div>
                             <div class="card__logo"><img src="logo_lukoil.png" alt=""></div>
-                            <div class="card__footer"><span>2022</span><span>•</span><span>UX/UI</span></div>
+                            <div class="card__footer"><span>2022</span></div>
                         </div>
                     </div>
                 </div>
@@ -334,29 +744,7 @@
                         <div class="card__info">
                             <div class="card__header"><h2><a href="https://www.akcept.ru/?utm_referrer=https%3A%2F%2Fwww.google.com%2F" target="_blank" class="project-link">САЙТ ДЛЯ БАНКА</a></h2></div>
                             <div class="card__logo"><img src="logo_aksept.png" alt=""></div>
-                            <div class="card__footer"><span>2023</span><span>•</span><span>UX/UI</span></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Слайд 5 -->
-                <div class="slide">
-                    <div class="card">
-                        <div class="card__image"><img src="image 1 слайдер(2).jpg" alt=""></div>
-                        <div class="card__info">
-                            <div class="card__header"><h2><a href="https://putin-team.ru/" target="_blank" class="project-link">РЕДИЗАЙН ИНТЕРНЕТ-МАГАЗИНА</a></h2></div>
-                            <div class="card__logo"><img src="Logo_PTR(1).png" alt=""></div>
-                            <div class="card__footer"><span>2024</span><span>•</span><span>UX/UI</span></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Слайд 6 -->
-                <div class="slide">
-                    <div class="card">
-                        <div class="card__image"><img src="image 1 слайдер(2).jpg" alt=""></div>
-                        <div class="card__info">
-                            <div class="card__header"><h2><a href="https://putin-team.ru/" target="_blank" class="project-link">РЕДИЗАЙН ИНТЕРНЕТ-МАГАЗИНА</a></h2></div>
-                            <div class="card__logo"><img src="Logo_PTR(1).png" alt=""></div>
-                            <div class="card__footer"><span>2024</span><span>•</span><span>UX/UI</span></div>
+                            <div class="card__footer"><span>2023</span></div>
                         </div>
                     </div>
                 </div>
@@ -375,9 +763,88 @@
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
-        <span class="dot"></span>
     </div>
 </section>
+
+<!-- ТРЕТИЙ БЛОК: ОТЗЫВЫ -->
+<section id="reviews" class="reviews">
+    <h1 class="title">ОТЗЫВЫ</h1>
+
+    <div class="reviews-grid">
+        <button type="button" class="review-folder" data-review="alexander">
+            <span class="review-meta">
+                <span class="review-name">Александр</span>
+                <span class="review-dot">•</span>
+                <span class="review-date">28.06.26</span>
+            </span>
+        </button>
+
+        <button type="button" class="review-folder" data-review="oksana">
+            <span class="review-meta">
+                <span class="review-name">Оксана</span>
+                <span class="review-dot">•</span>
+                <span class="review-date">22.05.26</span>
+            </span>
+        </button>
+
+        <button type="button" class="review-folder" data-review="victoria">
+            <span class="review-meta">
+                <span class="review-name">Виктория</span>
+                <span class="review-dot">•</span>
+                <span class="review-date">16.01.26</span>
+            </span>
+        </button>
+
+        <button type="button" class="review-folder" data-review="lukoil">
+            <span class="review-meta">
+                <span class="review-name">Лукойл</span>
+                <span class="review-dot">•</span>
+                <span class="review-date">21.02.25</span>
+            </span>
+        </button>
+    </div>
+</section>
+
+<!-- ПОП-АП С ОТЗЫВОМ (открывается по клику на папку) -->
+<div class="review-modal" id="reviewModal">
+    <div class="review-modal__overlay" data-close-modal></div>
+    <div class="review-modal__content" role="dialog" aria-modal="true" aria-labelledby="reviewModalName">
+        <button type="button" class="review-modal__close" data-close-modal aria-label="Закрыть">&times;</button>
+        <div class="review-modal__header">
+            <h3 class="review-modal__name" id="reviewModalName"></h3>
+            <span class="review-modal__date" id="reviewModalDate"></span>
+        </div>
+        <p class="review-modal__text" id="reviewModalText"></p>
+    </div>
+</div>
+
+<!-- ЧЕТВЁРТЫЙ БЛОК: ФИНАЛЬНЫЙ (КОНТАКТЫ) -->
+<footer class="final-footer" id="contacts">
+    <div class="final-footer__top">
+        <div class="final-footer__logo">MARA</div>
+        <div class="final-footer__status">Проектная full-time<br>занятость</div>
+    </div>
+
+    <div class="final-footer__cta">
+        <h2 class="final-footer__heading">
+            ЕСЛИ ХОТИТЕ <span>РАБОТАТЬ</span><br>
+            СО МНОЙ
+        </h2>
+        <p class="final-footer__subtext">Пишите или звоните по номеру</p>
+        <a href="tel:+79538819374" class="final-footer__phone">+7 953 881-93-74</a>
+    </div>
+
+    <div class="final-footer__bottom">
+        <div class="final-footer__socials">
+            <a href="#" class="final-footer__social">Telegram</a>
+            <a href="#" class="final-footer__social">ВКонтакте</a>
+        </div>
+
+        <button type="button" class="back-to-top" id="backToTop" aria-label="Наверх, к началу страницы">
+            Наверх <span class="back-to-top__arrow" aria-hidden="true">↑</span>
+        </button>
+    </div>
+</footer>
 
 <script>
     const slides = document.querySelector('.slides');
@@ -404,6 +871,86 @@
     nextBtn.addEventListener('click', () => showSlide(current + 1));
 
     showSlide(0);
+
+    // ---------- ОТЗЫВЫ: данные и поп-ап ----------
+    // Замените "text" на реальные отзывы клиентов
+    const reviewsData = {
+        alexander: {
+            name: 'Александр',
+            date: '28.06.26',
+            text: 'Здесь будет текст отзыва Александра о совместной работе. Замените этот текст на реальный отзыв клиента.'
+        },
+        oksana: {
+            name: 'Оксана',
+            date: '22.05.26',
+            text: 'Здесь будет текст отзыва Оксаны о совместной работе. Замените этот текст на реальный отзыв клиента.'
+        },
+        victoria: {
+            name: 'Виктория',
+            date: '16.01.26',
+            text: 'Здесь будет текст отзыва Виктории о совместной работе. Замените этот текст на реальный отзыв клиента.'
+        },
+        lukoil: {
+            name: 'Лукойл',
+            date: '21.02.25',
+            text: 'Здесь будет текст отзыва от компании «Лукойл» о совместной работе. Замените этот текст на реальный отзыв клиента.'
+        }
+    };
+
+    const reviewModal = document.getElementById('reviewModal');
+    const reviewModalName = document.getElementById('reviewModalName');
+    const reviewModalDate = document.getElementById('reviewModalDate');
+    const reviewModalText = document.getElementById('reviewModalText');
+    let lastFocusedFolder = null;
+
+    function openReviewModal(key) {
+        const data = reviewsData[key];
+        if (!data || !reviewModal) return;
+        reviewModalName.textContent = data.name;
+        reviewModalDate.textContent = data.date;
+        reviewModalText.textContent = data.text;
+        reviewModal.classList.add('active');
+        document.body.classList.add('modal-open');
+        reviewModal.querySelector('.review-modal__close').focus();
+    }
+
+    function closeReviewModal() {
+        if (!reviewModal) return;
+        reviewModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        if (lastFocusedFolder) lastFocusedFolder.focus();
+    }
+
+    document.querySelectorAll('.review-folder').forEach(folder => {
+        folder.addEventListener('click', () => {
+            lastFocusedFolder = folder;
+            openReviewModal(folder.dataset.review);
+        });
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach(el => {
+        el.addEventListener('click', closeReviewModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && reviewModal && reviewModal.classList.contains('active')) {
+            closeReviewModal();
+        }
+    });
+
+    // ---------- КНОПКА "НАВЕРХ": скролл на самый первый экран сайта ----------
+    const backToTopBtn = document.getElementById('backToTop');
+    const topAnchor = document.getElementById('top');
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            if (topAnchor) {
+                topAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    }
 </script>
 
 </body>
